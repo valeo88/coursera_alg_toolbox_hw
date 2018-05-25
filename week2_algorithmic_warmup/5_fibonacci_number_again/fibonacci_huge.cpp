@@ -28,7 +28,7 @@ long long get_fibonacci_huge_fast(long long n, long long m) {
     sequence[0] = 0;
     sequence[1] = 1;
 
-    int cnt = 2;
+    int cnt = 1;
     for (long long i = 2; i <= 6 * m; ++i) {
         sequence[i] = (sequence[i-2] + sequence[i-1]) % m;
         ++cnt;
