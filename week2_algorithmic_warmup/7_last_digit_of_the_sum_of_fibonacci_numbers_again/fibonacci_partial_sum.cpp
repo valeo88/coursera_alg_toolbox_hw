@@ -46,7 +46,7 @@ int get_fibonacci_partial_sum_fast(long long from, long long to) {
 
     int sum = 0;
     // sum sequence to n % cnt position
-    for (int i = from; i <= to % cnt; ++i) {
+    for (int i = from % cnt; i <= to % cnt; ++i) {
         sum += sequence[i];
     }
 
