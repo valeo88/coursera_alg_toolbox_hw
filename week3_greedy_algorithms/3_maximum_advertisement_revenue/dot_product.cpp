@@ -3,11 +3,17 @@
 #include <vector>
 
 using std::vector;
+using std::sort;
 
+// total running time is O(n log n) = O (n log n) of sorting + O (n) of iterate
 long long max_dot_product(vector<int> a, vector<int> b) {
   // write your code here
   long long result = 0;
-  for (size_t i = 0; i < a.size(); i++) {
+  // sort a and b vector - O(n log n)
+  sort(a.begin(), a.end());
+  sort(b.begin(), b.end());
+  // sum of products of max elements or step-by-step - O (n)
+  for (size_t i = 0; i < a.size(); ++i) {
     result += ((long long) a[i]) * b[i];
   }
   return result;
