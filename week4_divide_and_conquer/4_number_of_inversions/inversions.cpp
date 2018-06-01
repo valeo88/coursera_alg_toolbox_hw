@@ -26,6 +26,9 @@ long long merge_with_count(vector<int>& b, vector<int>& c, size_t left, size_t m
     while (j < right) {
         c[last_idx++] = b[j++];
     }
+    // replace in b by c
+    for (i=left; i < right; i++)
+        b[i] = c[i];
 
     return number_of_inversions;
 }
@@ -37,8 +40,7 @@ long long get_number_of_inversions(vector<int> &a, vector<int> &b, size_t left, 
   number_of_inversions += get_number_of_inversions(a, b, left, ave);
   number_of_inversions += get_number_of_inversions(a, b, ave, right);
   //write your code here
-  // fucking ave + 1 need use
-  number_of_inversions += merge_with_count(a, b, left, ave + 1, right);
+  number_of_inversions += merge_with_count(a, b, left, ave, right);
 
   return number_of_inversions;
 }
@@ -53,7 +55,7 @@ int main() {
   vector<int> b(a.size());
 
   std::cout << get_number_of_inversions(a, b, 0, a.size()) << '\n';
-  //for (int x : b) {
+  //for (int x : a) {
   //  std::cout << x << " ";
   //}
 }
