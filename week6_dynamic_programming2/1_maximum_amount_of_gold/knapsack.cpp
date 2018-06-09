@@ -4,14 +4,23 @@
 using std::vector;
 
 int optimal_weight(int W, const vector<int> &w) {
-  //write your code here
-  int current_weight = 0;
-  for (size_t i = 0; i < w.size(); ++i) {
-    if (current_weight + w[i] <= W) {
-      current_weight += w[i];
+  const int n = w.size();
+  vector<vector<int>> value(W+1, vector<int>(n+1));
+  for (int i = 1; i <= n; ++i) {
+    for (int j = 1; j <= W; ++j) {
+        // value[j][i-1] - max value for i-1 elements
+        value[j][i] = value[j][i-1];
+        // need to use i - 1 because indexes in w are 0...n-1
+        if (w[i-1] <= j) {
+            // value of gold piece is its weight
+            int val = value[j - w[i-1]][i-1] + w[i-1];
+            if (value[j][i] < val) {
+                value[j][i] = val;
+            }
+        }
     }
   }
-  return current_weight;
+  return value[W][n];
 }
 
 int main() {
